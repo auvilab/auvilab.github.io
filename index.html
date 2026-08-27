@@ -5,281 +5,460 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AUVILAB — Audio, Vídeo e Iluminación</title>
   <meta name="description" content="Diagnóstico y reparación de averías complejas en equipamiento profesional y de alta gama. Audio, vídeo e iluminación en Madrid.">
-  <meta name="theme-color" content="#efe9de">
+  <meta name="theme-color" content="#0b0b0a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
   <style>
-:root{
-  --paper:#11110f;
-  --paper2:#171714;
-  --ink:#f0eadf;
-  --muted:#9a9387;
-  --line:rgba(240,234,223,.18);
-  --serif:"Cormorant Garamond",Georgia,serif;
-  --sans:"DM Sans",Arial,sans-serif;
-  --pad:clamp(20px,5vw,72px);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-body.modal-open{overflow:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit}
-::selection{background:var(--ink);color:var(--paper)}
+    :root{
+      --bg:#0b0b0a;
+      --panel:#121210;
+      --text:#f0ece4;
+      --muted:#9e988d;
+      --soft:#c8c1b6;
+      --serif:"Cormorant Garamond",Georgia,serif;
+      --sans:"Jost",Arial,sans-serif;
+      --pad:clamp(22px,5vw,72px);
+      --menu-h:64px;
+    }
 
-.intro{
-  position:fixed;inset:0;z-index:100;
-  background:#090908;color:var(--paper);
-  display:grid;place-content:center;justify-items:center;
-  transition:opacity .7s ease,visibility .7s;
-}
-.intro.hide{opacity:0;visibility:hidden;pointer-events:none}
-.intro-logo{
-  font:600 clamp(52px,10vw,132px)/1 var(--serif);
-  letter-spacing:.18em;padding-left:.18em;
-  animation:introLogo .9s both cubic-bezier(.2,.7,.2,1);
-}
-.intro-sub{
-  margin-top:20px;font-size:10px;text-transform:uppercase;letter-spacing:.24em;opacity:.65;
-  animation:introSub .6s .3s both ease;
-}
-@keyframes introLogo{from{opacity:0;transform:scale(.98);letter-spacing:.3em}to{opacity:1;transform:none;letter-spacing:.18em}}
-@keyframes introSub{from{opacity:0;transform:translateY(6px)}to{opacity:.65;transform:none}}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      font-weight:400;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit}
+    ::selection{background:var(--text);color:var(--bg)}
 
-.site-header{
-  height:72px;padding:0 var(--pad);
-  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
-  position:sticky;top:0;z-index:20;
-  background:rgba(17,17,15,.92);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
-}
-.hero-inner:after{content:"";display:block;width:54px;height:1px;background:var(--line);margin:46px auto 0}
-.brand{font:600 24px/1 var(--serif);letter-spacing:.15em}
-.site-header nav{display:flex;gap:28px;font-size:10px;text-transform:uppercase;letter-spacing:.14em}
-.ghost-button{
-  justify-self:end;border:1px solid var(--ink);background:transparent;
-  padding:10px 14px;text-transform:uppercase;letter-spacing:.12em;font-size:9px;cursor:pointer;
-}
-.ghost-button:hover{background:var(--ink);color:var(--paper)}
-.primary-button:hover{background:var(--paper);color:#0b0b0a}
+    /* Intro: deliberately slower and high-contrast. */
+    .intro{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      display:grid;
+      place-content:center;
+      justify-items:center;
+      background:#070706;
+      color:#fffaf0;
+      opacity:1;
+      visibility:visible;
+      transition:opacity .9s cubic-bezier(.2,.65,.2,1),visibility .9s;
+    }
+    .intro.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
+    .intro-logo{
+      font:600 clamp(62px,11vw,148px)/.85 var(--serif);
+      letter-spacing:.15em;
+      padding-left:.15em;
+      opacity:0;
+      animation:introLogo 1.25s .15s cubic-bezier(.2,.7,.2,1) forwards;
+    }
+    .intro-sub{
+      margin-top:28px;
+      font:400 11px/1 var(--sans);
+      text-transform:uppercase;
+      letter-spacing:.28em;
+      color:#e5dfd4;
+      opacity:0;
+      animation:introSub .9s .85s ease forwards;
+    }
+    @keyframes introLogo{
+      from{opacity:0;transform:translateY(10px) scale(.985);letter-spacing:.24em}
+      to{opacity:1;transform:none;letter-spacing:.15em}
+    }
+    @keyframes introSub{
+      from{opacity:0;transform:translateY(7px)}
+      to{opacity:1;transform:none}
+    }
 
-.hero{
-  min-height:calc(100svh - 72px);
-  display:grid;place-items:center;
-  padding:80px var(--pad);
-  border-bottom:1px solid var(--line);
-}
-.hero-inner{text-align:center;max-width:1100px}
-.hero-logo{
-  font:600 clamp(78px,15vw,210px)/.78 var(--serif);
-  letter-spacing:.07em;
-}
-.hero-subtitle{
-  margin-top:34px;
-  font-size:12px;text-transform:uppercase;letter-spacing:.28em;
-}
-.hero-copy{
-  max-width:700px;margin:55px auto 0;
-  font-size:10px;line-height:1.7;
-  text-transform:uppercase;letter-spacing:.18em;
-  color:var(--muted);
-}
+    .hero{
+      min-height:calc(100svh - var(--menu-h));
+      display:grid;
+      place-items:center;
+      padding:clamp(70px,10vh,120px) var(--pad);
+    }
+    .hero-inner{
+      width:min(1120px,100%);
+      text-align:center;
+    }
+    .hero-logo{
+      font:600 clamp(82px,16vw,218px)/.78 var(--serif);
+      letter-spacing:.065em;
+      padding-left:.065em;
+      color:var(--text);
+    }
+    .hero-subtitle{
+      margin-top:34px;
+      font-size:clamp(11px,1vw,13px);
+      text-transform:uppercase;
+      letter-spacing:.30em;
+      color:var(--text);
+    }
+    .hero-copy{
+      max-width:760px;
+      margin:58px auto 0;
+      font-size:clamp(10px,.85vw,12px);
+      line-height:1.8;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:var(--soft);
+    }
 
-.section{padding:clamp(90px,12vw,170px) var(--pad)}
-.section-inner{max-width:1280px;margin:0 auto}
-.narrow{max-width:900px}
-.section-label{
-  margin:0 0 34px;
-  text-align:center;
-  text-transform:uppercase;letter-spacing:.2em;
-  font-size:9px;color:var(--muted)
-}
+    .sticky-menu{
+      position:sticky;
+      top:0;
+      z-index:40;
+      height:var(--menu-h);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:clamp(18px,3.2vw,48px);
+      padding:0 var(--pad);
+      background:rgba(11,11,10,.91);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+    }
+    .sticky-menu a,
+    .sticky-menu button{
+      border:0;
+      background:transparent;
+      padding:8px 2px;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      cursor:pointer;
+      color:var(--soft);
+      transition:color .2s ease,transform .2s ease;
+    }
+    .sticky-menu a:hover,
+    .sticky-menu button:hover{color:#fff;transform:translateY(-1px)}
+    .sticky-menu .menu-brand{
+      font-family:var(--serif);
+      font-size:17px;
+      font-weight:600;
+      letter-spacing:.14em;
+      color:var(--text);
+    }
 
-.brands-section{overflow:hidden}
-.brand-stream{
-  overflow:hidden;
-  padding:20px 0;
-  border-top:1px solid var(--line);
-  cursor:grab;touch-action:pan-y;
-}
-.brand-stream:last-child{border-bottom:1px solid var(--line)}
-.brand-stream:active{cursor:grabbing}
-.brand-track{
-  width:max-content;
-  display:flex;gap:24px;align-items:center;
-  will-change:transform;
-}
-.brand-track span{
-  font:500 clamp(18px,2vw,28px)/1 var(--serif);
-  white-space:nowrap;letter-spacing:.03em;
-}
-.brand-track i{font-style:normal;color:#8b8478}
+    .section{
+      padding:clamp(105px,13vw,190px) var(--pad);
+      background:var(--bg);
+    }
+    .section-inner{width:min(1180px,100%);margin:0 auto}
+    .narrow{width:min(840px,100%)}
+    .section-label{
+      margin:0 0 38px;
+      text-align:center;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      font-weight:500;
+      color:var(--muted);
+    }
 
-.atelier{
-  background:#0b0b0a;color:var(--paper);
-}
-.atelier .section-label{color:#aaa397}
-.atelier h2{
-  margin:0 auto;
-  max-width:820px;
-  text-align:center;
-  font:500 clamp(46px,7vw,90px)/.94 var(--serif);
-  letter-spacing:-.025em;
-}
-.atelier-copy{
-  margin:45px auto 0;
-  max-width:700px;
-  text-align:center;
-  line-height:1.8;
-  font-size:13px;color:#b8b0a4;
-}
-.process{
-  margin:70px auto 0;
-  padding:22px 0;
-  max-width:720px;
-  display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;
-  border-top:1px solid rgba(240,234,223,.2);
-  border-bottom:1px solid rgba(240,234,223,.2);
-}
-.process span{text-transform:uppercase;letter-spacing:.15em;font-size:10px}
-.process b{font-weight:400;color:#8c867c}
-.technicians{
-  margin:60px auto 0;
-  max-width:620px;
-  display:grid;grid-template-columns:1fr 1fr;gap:50px;
-  text-align:center;
-}
-.technicians span{
-  display:block;margin-bottom:10px;
-  text-transform:uppercase;letter-spacing:.15em;
-  font-size:9px;color:#9e978c;
-}
-.technicians strong{font:500 24px/1 var(--serif)}
-.primary-button{
-  display:block;margin:58px auto 0;
-  padding:14px 19px;border:1px solid var(--paper);background:transparent;color:var(--paper);
-  text-transform:uppercase;letter-spacing:.13em;font-size:9px;cursor:pointer;
-  transition:.25s;
-}
+    .brands-section{overflow:hidden;padding-top:120px;padding-bottom:135px}
+    .brand-stream{
+      overflow:hidden;
+      padding:11px 0;
+      cursor:grab;
+      touch-action:pan-y;
+      user-select:none;
+    }
+    .brand-stream:active{cursor:grabbing}
+    .brand-track{
+      width:max-content;
+      display:flex;
+      align-items:center;
+      gap:30px;
+      will-change:transform;
+    }
+    .brand-track span{
+      white-space:nowrap;
+      font-family:var(--sans);
+      font-size:clamp(22px,2.6vw,38px);
+      font-weight:400;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      color:#e8e2d9;
+    }
+    .brand-track i{
+      font-style:normal;
+      font-size:14px;
+      color:#6f6a62;
+    }
 
-.contact{background:var(--paper2)}
-.contact-list{
-  border-top:1px solid var(--line);
-}
-.contact-row{
-  display:grid;
-  grid-template-columns:1fr 1.4fr 1fr;
-  gap:20px;
-  padding:20px 0;
-  align-items:baseline;
-  border-bottom:1px solid var(--line);
-}
-.contact-row span{
-  text-transform:uppercase;letter-spacing:.15em;font-size:9px;color:var(--muted);
-}
-.contact-row strong{font:500 21px/1.1 var(--serif)}
-.contact-row p{margin:0;text-align:right;font-size:11px;color:var(--muted)}
+    .atelier{text-align:center}
+    .atelier h2{
+      max-width:920px;
+      margin:0 auto;
+      font-family:var(--sans);
+      font-size:clamp(34px,5vw,70px);
+      font-weight:400;
+      line-height:1.06;
+      letter-spacing:-.02em;
+      color:var(--text);
+    }
+    .atelier-copy{
+      max-width:720px;
+      margin:44px auto 0;
+      font-size:clamp(14px,1.2vw,17px);
+      line-height:1.9;
+      font-weight:300;
+      color:#bbb4aa;
+    }
+    .process{
+      margin:64px auto 0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:clamp(15px,2.5vw,34px);
+      flex-wrap:wrap;
+      color:#f4efe7;
+    }
+    .process span{
+      font-size:clamp(12px,1.2vw,15px);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-weight:500;
+    }
+    .process b{
+      font-weight:300;
+      color:#8d877e;
+      font-size:16px;
+    }
+    .technicians{
+      margin:68px auto 0;
+      width:min(650px,100%);
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:56px;
+    }
+    .technician span{
+      display:block;
+      margin-bottom:10px;
+      font-size:9px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:var(--muted);
+    }
+    .technician strong{
+      font-size:18px;
+      font-weight:400;
+      letter-spacing:.04em;
+      color:var(--text);
+    }
+    .primary-button{
+      display:inline-flex;
+      margin-top:60px;
+      align-items:center;
+      justify-content:center;
+      min-width:170px;
+      padding:13px 18px;
+      border:1px solid rgba(240,236,228,.5);
+      background:transparent;
+      color:var(--text);
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      cursor:pointer;
+      transition:background .22s ease,color .22s ease,border-color .22s ease;
+    }
+    .primary-button:hover{background:var(--text);color:var(--bg);border-color:var(--text)}
 
-.map-card{
-  width:min(100%,640px);
-  height:260px;
-  margin:55px auto 0;
-  border:1px solid var(--line);
-  overflow:hidden;
-}
-.map-card iframe{width:100%;height:100%;border:0;filter:brightness(.86) contrast(.95)}
+    .contact{text-align:center;padding-top:125px;padding-bottom:100px}
+    .contact-title{
+      margin:0 0 54px;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      font-weight:500;
+      color:var(--muted);
+    }
+    .contact-title .logo-word{
+      font-family:var(--serif);
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:.14em;
+      color:var(--text);
+      margin-right:8px;
+    }
+    .contact-grid{
+      width:min(820px,100%);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:42px 70px;
+      text-align:center;
+    }
+    .contact-item span{
+      display:block;
+      margin-bottom:9px;
+      font-size:9px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:var(--muted);
+    }
+    .contact-item strong{
+      display:block;
+      font-size:18px;
+      font-weight:400;
+      color:var(--text);
+      letter-spacing:.025em;
+    }
+    .contact-item p{
+      margin:8px 0 0;
+      font-size:12px;
+      color:#aaa399;
+      font-weight:300;
+    }
+    .contact-item.full{grid-column:1 / -1}
 
-footer{
-  min-height:110px;padding:0 var(--pad);
-  display:flex;justify-content:space-between;align-items:center;
-  border-top:1px solid var(--line);
-}
-footer p{margin:0;font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+    .map-card{
+      width:min(480px,100%);
+      height:190px;
+      margin:58px auto 0;
+      overflow:hidden;
+      border-radius:2px;
+      background:#191917;
+    }
+    .map-card iframe{width:100%;height:100%;border:0;display:block}
 
-.modal{
-  position:fixed;inset:0;z-index:90;
-  display:grid;place-items:center;
-  padding:20px;
-  visibility:hidden;pointer-events:none;
-}
-.modal.open{visibility:visible;pointer-events:auto}
-.modal-backdrop{
-  position:absolute;inset:0;background:rgba(0,0,0,.72);
-  opacity:0;transition:opacity .25s ease;
-}
-.modal.open .modal-backdrop{opacity:1}
-.modal-box{
-  width:min(560px,100%);
-  max-height:min(720px,90vh);
-  overflow:auto;
-  position:relative;z-index:1;
-  background:#181816;
-  padding:clamp(30px,5vw,58px);
-  border:1px solid rgba(255,255,255,.15);
-  box-shadow:0 30px 90px rgba(0,0,0,.55);
-  transform:translateY(12px) scale(.985);
-  opacity:0;
-  transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .3s ease;
-}
-.modal.open .modal-box{transform:none;opacity:1}
-.modal-close{
-  position:absolute;right:18px;top:14px;
-  border:0;background:transparent;font:500 28px/1 var(--serif);cursor:pointer
-}
-.modal-box h2{
-  margin:0;
-  text-align:center;
-  font:500 clamp(36px,6vw,58px)/.96 var(--serif);
-}
-.modal-intro{text-align:center;color:var(--muted);font-size:12px;margin:18px 0 40px}
-.modal-contact{
-  padding:20px 0;border-top:1px solid var(--line);text-align:center;
-}
-.modal-contact span{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:8px}
-.modal-contact strong{font:500 24px/1 var(--serif)}
-.modal-contact p{font-size:12px;margin:8px 0 0}
-.modal-email{
-  margin-top:24px;display:block;text-align:center;
-  border:1px solid var(--ink);padding:13px;
-  text-transform:uppercase;letter-spacing:.12em;font-size:9px;
-}
-.modal-email:hover{background:var(--paper);color:#11110f}
+    footer{
+      padding:38px var(--pad) 46px;
+      text-align:center;
+      color:#777168;
+      font-size:9px;
+      text-transform:uppercase;
+      letter-spacing:.17em;
+      background:var(--bg);
+    }
 
-.reveal{
-  opacity:0;transform:translateY(14px);
-  transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);
-}
-.reveal.visible{opacity:1;transform:none}
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index:90;
+      display:grid;
+      place-items:center;
+      padding:22px;
+      visibility:hidden;
+      pointer-events:none;
+    }
+    .modal.open{visibility:visible;pointer-events:auto}
+    .modal-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.76);
+      opacity:0;
+      transition:opacity .28s ease;
+    }
+    .modal.open .modal-backdrop{opacity:1}
+    .modal-box{
+      position:relative;
+      z-index:1;
+      width:min(510px,100%);
+      max-height:88vh;
+      overflow:auto;
+      padding:clamp(34px,5vw,54px);
+      background:#151513;
+      box-shadow:0 32px 90px rgba(0,0,0,.55);
+      opacity:0;
+      transform:translateY(10px) scale(.985);
+      transition:opacity .28s ease,transform .28s cubic-bezier(.2,.7,.2,1);
+    }
+    .modal.open .modal-box{opacity:1;transform:none}
+    .modal-close{
+      position:absolute;
+      top:13px;
+      right:16px;
+      border:0;
+      background:transparent;
+      color:#bdb6ac;
+      font-size:28px;
+      line-height:1;
+      cursor:pointer;
+    }
+    .modal-box h2{
+      margin:0;
+      text-align:center;
+      font-family:var(--sans);
+      font-size:clamp(27px,4.5vw,42px);
+      font-weight:400;
+      line-height:1.1;
+    }
+    .modal-intro{
+      margin:15px 0 34px;
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:300;
+    }
+    .modal-contact{
+      padding:18px 0;
+      text-align:center;
+    }
+    .modal-contact span{
+      display:block;
+      margin-bottom:7px;
+      color:var(--muted);
+      font-size:9px;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+    }
+    .modal-contact strong{font-size:18px;font-weight:400}
+    .modal-contact p{margin:6px 0 0;color:#aaa399;font-size:12px}
+    .modal-email{
+      display:block;
+      width:max-content;
+      max-width:100%;
+      margin:28px auto 0;
+      color:#ece6dc;
+      font-size:11px;
+      letter-spacing:.08em;
+    }
 
-@media(max-width:800px){
-  .site-header{grid-template-columns:1fr auto}
-  .site-header nav{display:none}
-  .hero-logo{font-size:clamp(72px,22vw,145px)}
-  .hero-subtitle{font-size:10px;letter-spacing:.22em}
-  .technicians{grid-template-columns:1fr;gap:32px}
-  .contact-row{grid-template-columns:1fr}
-  .contact-row p{text-align:left}
-}
-@media(max-width:520px){
-  .site-header{padding:0 18px}
-  .brand{font-size:20px}
-  .hero{padding-left:20px;padding-right:20px}
-  .hero-logo{font-size:20vw}
-  .hero-copy{font-size:9px;letter-spacing:.13em}
-  .section{padding-left:20px;padding-right:20px}
-  .atelier h2{font-size:50px}
-  .process{gap:14px}
-  footer{padding:30px 20px;align-items:flex-start;flex-direction:column;gap:15px}
-  .map-card{height:220px}
-}
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*:before,*:after{animation:none!important;transition:none!important}
-  .intro{display:none}
-  .reveal{opacity:1;transform:none}
-}
-</style>
+    .inview{
+      transform:translateY(0);
+      transition:transform .65s cubic-bezier(.2,.7,.2,1);
+    }
+    .inview.entered{transform:translateY(-2px)}
+
+    @media(max-width:760px){
+      :root{--menu-h:58px}
+      .hero{padding-left:20px;padding-right:20px}
+      .hero-logo{font-size:clamp(70px,21vw,138px)}
+      .hero-subtitle{font-size:10px;letter-spacing:.22em}
+      .sticky-menu{gap:18px;padding:0 14px;overflow-x:auto;justify-content:flex-start}
+      .sticky-menu::-webkit-scrollbar{display:none}
+      .sticky-menu .menu-brand{font-size:15px}
+      .section{padding-left:20px;padding-right:20px}
+      .atelier h2{font-size:clamp(34px,10vw,52px)}
+      .technicians{grid-template-columns:1fr;gap:32px}
+      .contact-grid{grid-template-columns:1fr;gap:34px}
+      .contact-item.full{grid-column:auto}
+    }
+
+    @media(max-width:480px){
+      .hero-copy{font-size:9px;letter-spacing:.13em;margin-top:45px}
+      .brand-track span{font-size:22px}
+      .brand-track{gap:22px}
+      .process{gap:12px}
+      .process span{font-size:10px}
+      .map-card{height:170px}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*:before,*:after{animation:none!important;transition:none!important}
+      .intro{display:none}
+    }
+  </style>
 </head>
 <body>
   <div class="intro" aria-hidden="true">
@@ -287,40 +466,36 @@ footer p{margin:0;font-size:9px;text-transform:uppercase;letter-spacing:.15em;co
     <div class="intro-sub">Audio · Vídeo · Iluminación</div>
   </div>
 
-  <header class="site-header">
-    <a class="brand" href="#inicio">AUVILAB</a>
-    <nav>
-      <a href="#marcas">Marcas</a>
-      <a href="#metodo">Método</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-    <button class="ghost-button" data-open-modal>Cita previa</button>
-  </header>
-
   <main>
     <section id="inicio" class="hero">
-      <div class="hero-inner reveal">
+      <div class="hero-inner">
         <div class="hero-logo">AUVILAB</div>
         <div class="hero-subtitle">Audio · Vídeo · Iluminación</div>
-        <p class="hero-copy">
-          Diagnóstico y reparación de averías complejas en equipamiento profesional y de alta gama.
-        </p>
+        <p class="hero-copy">Diagnóstico y reparación de averías complejas en equipamiento profesional y de alta gama.</p>
       </div>
     </section>
 
-    <section id="marcas" class="brands-section section">
-      <div class="section-inner">
-        <p class="section-label reveal">Marcas con las que trabajamos</p>
+    <nav class="sticky-menu" aria-label="Navegación principal">
+      <a class="menu-brand" href="#inicio">AUVILAB</a>
+      <a href="#marcas">Marcas</a>
+      <a href="#taller">Taller</a>
+      <a href="#contacto">Contacto</a>
+      <button type="button" data-open-modal>Cita previa</button>
+    </nav>
 
-        <div class="brand-stream reveal" data-marquee>
+    <section id="marcas" class="section brands-section">
+      <div class="section-inner">
+        <p class="section-label">Marcas con las que trabajamos</p>
+
+        <div class="brand-stream" data-marquee>
           <div class="brand-track">
             <span>MARCA 01</span><i>·</i><span>MARCA 02</span><i>·</i><span>MARCA 03</span><i>·</i><span>MARCA 04</span><i>·</i><span>MARCA 05</span><i>·</i>
             <span>MARCA 01</span><i>·</i><span>MARCA 02</span><i>·</i><span>MARCA 03</span><i>·</i><span>MARCA 04</span><i>·</i><span>MARCA 05</span><i>·</i>
           </div>
         </div>
 
-        <div class="brand-stream reveal" data-marquee>
-          <div class="brand-track brand-track-alt">
+        <div class="brand-stream" data-marquee>
+          <div class="brand-track">
             <span>MARCA 06</span><i>·</i><span>MARCA 07</span><i>·</i><span>MARCA 08</span><i>·</i><span>MARCA 09</span><i>·</i><span>MARCA 10</span><i>·</i>
             <span>MARCA 06</span><i>·</i><span>MARCA 07</span><i>·</i><span>MARCA 08</span><i>·</i><span>MARCA 09</span><i>·</i><span>MARCA 10</span><i>·</i>
           </div>
@@ -328,67 +503,64 @@ footer p{margin:0;font-size:9px;text-transform:uppercase;letter-spacing:.15em;co
       </div>
     </section>
 
-    <section id="metodo" class="atelier section">
+    <section id="taller" class="section atelier">
       <div class="section-inner narrow">
-        <p class="section-label reveal">Taller especializado</p>
-        <h2 class="reveal">Cuando el diagnóstico exige experiencia, criterio y precisión.</h2>
-        <p class="atelier-copy reveal">
-          AUVILAB es un servicio técnico dedicado a la evaluación, mantenimiento y reparación de equipamiento profesional.
-          Trabajo directo con el técnico, diagnóstico riguroso e intervención responsable sobre cada equipo.
-        </p>
+        <p class="section-label">Taller especializado</p>
+        <h2>Cuando el diagnóstico exige experiencia, criterio y precisión.</h2>
+        <p class="atelier-copy">AUVILAB es un servicio técnico dedicado a la evaluación, mantenimiento y reparación de equipamiento profesional. Trabajo directo con el técnico, diagnóstico riguroso e intervención responsable sobre cada equipo.</p>
 
-        <div class="process reveal">
+        <div class="process" aria-label="Proceso de trabajo">
           <span>Diagnóstico</span><b>→</b><span>Presupuesto</span><b>→</b><span>Reparación</span>
         </div>
 
-        <div class="technicians reveal">
-          <div>
+        <div class="technicians">
+          <div class="technician">
             <span>Audio</span>
             <strong>Francisco Liberona</strong>
           </div>
-          <div>
+          <div class="technician">
             <span>Vídeo · Iluminación</span>
             <strong>José Avellaneda</strong>
           </div>
         </div>
 
-        <button class="primary-button reveal" data-open-modal>Solicitar cita</button>
+        <button class="primary-button" type="button" data-open-modal>Solicitar cita</button>
       </div>
     </section>
 
-    <section id="contacto" class="contact section">
+    <section id="contacto" class="section contact">
       <div class="section-inner narrow">
-        <p class="section-label reveal">Contacto</p>
+        <p class="contact-title"><span class="logo-word">AUVILAB</span> · SOMOS</p>
 
-        <div class="contact-list reveal">
-          <div class="contact-row">
+        <div class="contact-grid">
+          <div class="contact-item">
             <span>Audio</span>
             <strong>Francisco Liberona</strong>
             <p>+34 XXX XXX XXX</p>
           </div>
-          <div class="contact-row">
+          <div class="contact-item">
             <span>Vídeo · Iluminación</span>
             <strong>José Avellaneda</strong>
             <p>+34 XXX XXX XXX</p>
           </div>
-          <div class="contact-row">
+          <div class="contact-item">
             <span>Ubicación</span>
             <strong>Príncipe Pío · Madrid</strong>
             <p>Dirección pendiente</p>
           </div>
-          <div class="contact-row">
+          <div class="contact-item">
             <span>Correo</span>
             <strong>info@auvilab.es</strong>
             <p>Atención con cita previa</p>
           </div>
-          <div class="contact-row">
+          <div class="contact-item full">
             <span>Redes sociales</span>
             <strong>Instagram · TikTok</strong>
             <p>Perfiles pendientes</p>
           </div>
         </div>
 
-        <div class="map-card reveal">
+        <div class="map-card">
           <iframe
             title="Mapa de Príncipe Pío, Madrid"
             src="https://www.google.com/maps?q=Pr%C3%ADncipe%20P%C3%ADo%2C%20Madrid&z=15&output=embed"
@@ -401,15 +573,12 @@ footer p{margin:0;font-size:9px;text-transform:uppercase;letter-spacing:.15em;co
     </section>
   </main>
 
-  <footer>
-    <a class="brand" href="#inicio">AUVILAB</a>
-    <p>Audio · Vídeo · Iluminación · Madrid</p>
-  </footer>
+  <footer>AUVILAB · Audio · Vídeo · Iluminación · Madrid</footer>
 
   <div class="modal" id="appointment-modal" aria-hidden="true">
     <div class="modal-backdrop" data-close-modal></div>
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button class="modal-close" data-close-modal aria-label="Cerrar">×</button>
+    <section class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button>
       <p class="section-label">Cita previa</p>
       <h2 id="modal-title">Contacta con el técnico adecuado.</h2>
       <p class="modal-intro">Trabajamos exclusivamente con cita previa.</p>
@@ -419,99 +588,107 @@ footer p{margin:0;font-size:9px;text-transform:uppercase;letter-spacing:.15em;co
         <strong>Francisco Liberona</strong>
         <p>+34 XXX XXX XXX</p>
       </div>
-
       <div class="modal-contact">
         <span>Vídeo · Iluminación</span>
         <strong>José Avellaneda</strong>
         <p>+34 XXX XXX XXX</p>
       </div>
-
-      <a href="mailto:info@auvilab.es" class="modal-email">info@auvilab.es</a>
-    </div>
+      <a class="modal-email" href="mailto:info@auvilab.es">info@auvilab.es</a>
+    </section>
   </div>
 
   <script>
-const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const intro = document.querySelector('.intro');
+    (() => {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const intro = document.querySelector('.intro');
 
-if (!reduced) {
-  window.addEventListener('load', () => setTimeout(() => intro?.classList.add('hide'), 1150));
-} else {
-  intro?.classList.add('hide');
-}
+      const hideIntro = () => intro?.classList.add('is-hidden');
+      if (reduced) {
+        hideIntro();
+      } else {
+        window.addEventListener('load', () => window.setTimeout(hideIntro, 2650), { once:true });
+        window.setTimeout(hideIntro, 4200); // fail-safe if load is delayed by the map/font
+      }
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, {threshold:.12});
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      const modal = document.getElementById('appointment-modal');
+      let lastFocus = null;
+      const openModal = () => {
+        lastFocus = document.activeElement;
+        modal?.classList.add('open');
+        modal?.setAttribute('aria-hidden','false');
+        document.body.classList.add('modal-open');
+        window.setTimeout(() => modal?.querySelector('.modal-close')?.focus(), 40);
+      };
+      const closeModal = () => {
+        modal?.classList.remove('open');
+        modal?.setAttribute('aria-hidden','true');
+        document.body.classList.remove('modal-open');
+        lastFocus?.focus?.();
+      };
 
-const modal = document.getElementById('appointment-modal');
-let lastFocus = null;
-function openModal(){
-  lastFocus = document.activeElement;
-  modal?.classList.add('open');
-  modal?.setAttribute('aria-hidden','false');
-  document.body.classList.add('modal-open');
-  setTimeout(()=>modal?.querySelector('.modal-close')?.focus(),50);
-}
-function closeModal(){
-  modal?.classList.remove('open');
-  modal?.setAttribute('aria-hidden','true');
-  document.body.classList.remove('modal-open');
-  lastFocus?.focus?.();
-}
-document.querySelectorAll('[data-open-modal]').forEach(b=>b.addEventListener('click',openModal));
-document.querySelectorAll('[data-close-modal]').forEach(b=>b.addEventListener('click',closeModal));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal?.classList.contains('open'))closeModal()});
+      document.querySelectorAll('[data-open-modal]').forEach(el => el.addEventListener('click', openModal));
+      document.querySelectorAll('[data-close-modal]').forEach(el => el.addEventListener('click', closeModal));
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal?.classList.contains('open')) closeModal();
+      });
 
-document.querySelectorAll('[data-marquee]').forEach((viewport,index)=>{
-  const track = viewport.querySelector('.brand-track');
-  let x = index ? -160 : 0;
-  let speed = index ? .22 : -.26;
-  let dragging = false;
-  let prev = 0;
-  let dragSpeed = 0;
-  let last = performance.now();
+      document.querySelectorAll('[data-marquee]').forEach((viewport, index) => {
+        const track = viewport.querySelector('.brand-track');
+        if (!track) return;
 
-  const wrap = ()=>{
-    const half = track.scrollWidth/2;
-    if(!half) return;
-    if(x < -half) x += half;
-    if(x > 0) x -= half;
-  };
+        let x = index === 0 ? 0 : -220;
+        let speed = index === 0 ? -0.28 : 0.24;
+        const baseSpeed = speed;
+        let dragging = false;
+        let previousX = 0;
+        let dragVelocity = 0;
+        let lastTime = performance.now();
 
-  function frame(now){
-    const dt = Math.min(32, now-last); last=now;
-    if(!dragging && !reduced){
-      x += speed*(dt/16.67);
-      speed += ((index ? .22 : -.26)-speed)*.01;
-      wrap();
-      track.style.transform=`translate3d(${x}px,0,0)`;
-    }
-    requestAnimationFrame(frame);
-  }
+        const wrap = () => {
+          const half = track.scrollWidth / 2;
+          if (!half) return;
+          if (x < -half) x += half;
+          if (x > 0) x -= half;
+        };
 
-  viewport.addEventListener('pointerdown',e=>{
-    dragging=true; prev=e.clientX; dragSpeed=0;
-    viewport.setPointerCapture?.(e.pointerId);
-  });
-  viewport.addEventListener('pointermove',e=>{
-    if(!dragging)return;
-    const d=e.clientX-prev; prev=e.clientX;
-    x+=d; dragSpeed=d*.55; wrap();
-    track.style.transform=`translate3d(${x}px,0,0)`;
-  });
-  const release=()=>{if(!dragging)return;dragging=false;speed=dragSpeed};
-  viewport.addEventListener('pointerup',release);
-  viewport.addEventListener('pointercancel',release);
-  viewport.addEventListener('pointerleave',()=>dragging&&release());
-  requestAnimationFrame(frame);
-});
-</script>
+        const frame = now => {
+          const dt = Math.min(34, now - lastTime);
+          lastTime = now;
+          if (!dragging && !reduced) {
+            x += speed * (dt / 16.67);
+            speed += (baseSpeed - speed) * 0.012;
+            wrap();
+            track.style.transform = `translate3d(${x}px,0,0)`;
+          }
+          requestAnimationFrame(frame);
+        };
+
+        viewport.addEventListener('pointerdown', e => {
+          dragging = true;
+          previousX = e.clientX;
+          dragVelocity = 0;
+          viewport.setPointerCapture?.(e.pointerId);
+        });
+        viewport.addEventListener('pointermove', e => {
+          if (!dragging) return;
+          const delta = e.clientX - previousX;
+          previousX = e.clientX;
+          x += delta;
+          dragVelocity = delta * 0.55;
+          wrap();
+          track.style.transform = `translate3d(${x}px,0,0)`;
+        });
+        const release = () => {
+          if (!dragging) return;
+          dragging = false;
+          speed = dragVelocity;
+        };
+        viewport.addEventListener('pointerup', release);
+        viewport.addEventListener('pointercancel', release);
+        viewport.addEventListener('pointerleave', () => dragging && release());
+        requestAnimationFrame(frame);
+      });
+    })();
+  </script>
 </body>
 </html>
