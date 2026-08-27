@@ -4,276 +4,160 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AUVILAB — Audio, Vídeo e Iluminación</title>
-  <meta name="description" content="Servicio técnico especializado en diagnóstico y reparación de averías complejas de equipos profesionales de audio, vídeo e iluminación en Madrid.">
-  <meta name="theme-color" content="#f1ece2">
-  <meta property="og:title" content="AUVILAB — Servicio técnico especializado">
-  <meta property="og:description" content="Audio · Vídeo · Iluminación · Madrid">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Diagnóstico y reparación de averías complejas en equipamiento profesional y de alta gama. Audio, vídeo e iluminación en Madrid.">
+  <meta name="theme-color" content="#efe9de">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <div class="intro" aria-hidden="true">
-    <div class="intro-mark">AUVILAB</div>
-    <div class="intro-line"></div>
+    <div class="intro-logo">AUVILAB</div>
     <div class="intro-sub">Audio · Vídeo · Iluminación</div>
   </div>
 
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="Auvilab, inicio">AUVILAB</a>
-    <nav class="nav" aria-label="Navegación principal">
-      <a href="#servicios">Servicios</a>
+    <a class="brand" href="#inicio">AUVILAB</a>
+    <nav>
       <a href="#marcas">Marcas</a>
       <a href="#metodo">Método</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <button class="button button-small" data-open-modal>Cita previa</button>
+    <button class="ghost-button" data-open-modal>Cita previa</button>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-kicker reveal">Servicio técnico especializado · Madrid</div>
-
-      <h1 class="hero-title reveal">
-        <span>Audio.</span>
-        <span>Vídeo.</span>
-        <span>Iluminación.</span>
-      </h1>
-
-      <div class="hero-bottom reveal">
-        <p>
-          Diagnóstico y reparación de
-          <strong>averías complejas</strong> en equipamiento
-          profesional y de alta gama.
-        </p>
-        <button class="button button-arrow" data-open-modal>
-          Solicitar cita <span aria-hidden="true">↗</span>
-        </button>
-      </div>
-
-      <div class="hero-rule"></div>
-      <div class="hero-index">AUV / MADRID / 2026</div>
-    </section>
-
-    <section class="statement section-pad">
-      <div class="section-number reveal">01</div>
-      <div class="statement-copy reveal">
-        <p class="eyebrow">Taller especializado</p>
-        <h2>Cuando el diagnóstico exige experiencia, criterio y precisión.</h2>
-        <p class="statement-body">
-          AUVILAB es un servicio técnico dedicado a la evaluación, mantenimiento y
-          reparación de equipamiento profesional. Trabajo directo con el técnico,
-          diagnóstico riguroso e intervención responsable sobre cada equipo.
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-inner reveal">
+        <div class="hero-logo">AUVILAB</div>
+        <div class="hero-subtitle">Audio · Vídeo · Iluminación</div>
+        <p class="hero-copy">
+          Diagnóstico y reparación de averías complejas en equipamiento profesional y de alta gama.
         </p>
       </div>
     </section>
 
-    <section id="servicios" class="services section-pad">
-      <div class="section-heading reveal">
-        <span class="section-number">02</span>
-        <p class="eyebrow">Áreas de trabajo</p>
+    <section id="marcas" class="brands-section section">
+      <div class="section-inner">
+        <p class="section-label reveal">Marcas con las que trabajamos</p>
+
+        <div class="brand-stream reveal" data-marquee>
+          <div class="brand-track">
+            <span>MARCA 01</span><i>·</i><span>MARCA 02</span><i>·</i><span>MARCA 03</span><i>·</i><span>MARCA 04</span><i>·</i><span>MARCA 05</span><i>·</i>
+            <span>MARCA 01</span><i>·</i><span>MARCA 02</span><i>·</i><span>MARCA 03</span><i>·</i><span>MARCA 04</span><i>·</i><span>MARCA 05</span><i>·</i>
+          </div>
+        </div>
+
+        <div class="brand-stream reveal" data-marquee>
+          <div class="brand-track brand-track-alt">
+            <span>MARCA 06</span><i>·</i><span>MARCA 07</span><i>·</i><span>MARCA 08</span><i>·</i><span>MARCA 09</span><i>·</i><span>MARCA 10</span><i>·</i>
+            <span>MARCA 06</span><i>·</i><span>MARCA 07</span><i>·</i><span>MARCA 08</span><i>·</i><span>MARCA 09</span><i>·</i><span>MARCA 10</span><i>·</i>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="service-grid">
-        <article class="service-card service-card-primary reveal">
-          <div class="service-top">
-            <span class="service-index">A / 01</span>
-            <span class="service-symbol">◉</span>
-          </div>
-          <h3>Audio</h3>
-          <p>
-            Equipos de audio profesional y alta fidelidad, amplificación,
-            procesado, fuentes y electrónica analógica y digital.
-          </p>
-          <div class="service-note">Francisco Liberona</div>
-        </article>
+    <section id="metodo" class="atelier section">
+      <div class="section-inner narrow">
+        <p class="section-label reveal">Taller especializado</p>
+        <h2 class="reveal">Cuando el diagnóstico exige experiencia, criterio y precisión.</h2>
+        <p class="atelier-copy reveal">
+          AUVILAB es un servicio técnico dedicado a la evaluación, mantenimiento y reparación de equipamiento profesional.
+          Trabajo directo con el técnico, diagnóstico riguroso e intervención responsable sobre cada equipo.
+        </p>
 
-        <article class="service-card service-card-primary reveal">
-          <div class="service-top">
-            <span class="service-index">V / 02</span>
-            <span class="service-symbol">▣</span>
-          </div>
-          <h3>Vídeo</h3>
-          <p>
-            Cámaras profesionales y cinematográficas, monitores, grabadores,
-            sistemas de vídeo y electrónica asociada.
-          </p>
-          <div class="service-note">José Avellaneda</div>
-        </article>
+        <div class="process reveal">
+          <span>Diagnóstico</span><b>→</b><span>Presupuesto</span><b>→</b><span>Reparación</span>
+        </div>
 
-        <article class="service-card service-card-secondary reveal">
-          <div class="service-top">
-            <span class="service-index">L / 03</span>
-            <span class="service-symbol">✦</span>
+        <div class="technicians reveal">
+          <div>
+            <span>Audio</span>
+            <strong>Francisco Liberona</strong>
           </div>
           <div>
-            <h3>Iluminación</h3>
-            <p>
-              Diagnóstico, mantenimiento y reparación de equipamiento de
-              iluminación profesional y sistemas de control.
-            </p>
+            <span>Vídeo · Iluminación</span>
+            <strong>José Avellaneda</strong>
           </div>
-          <div class="service-note">José Avellaneda</div>
-        </article>
+        </div>
+
+        <button class="primary-button reveal" data-open-modal>Solicitar cita</button>
       </div>
     </section>
 
-    <section id="marcas" class="brands">
-      <div class="section-pad brands-head reveal">
-        <span class="section-number">03</span>
-        <div>
-          <p class="eyebrow">Experiencia técnica</p>
-          <h2>Marcas con las que trabajamos.</h2>
-          <p class="brands-note">Listado provisional — pendiente de marcas definitivas.</p>
-        </div>
-      </div>
+    <section id="contacto" class="contact section">
+      <div class="section-inner narrow">
+        <p class="section-label reveal">Contacto</p>
 
-      <div class="brand-row" data-marquee>
-        <div class="brand-label">Audio</div>
-        <div class="marquee-viewport">
-          <div class="marquee-track">
-            <span>MARCA AUDIO 01</span><i>—</i>
-            <span>MARCA AUDIO 02</span><i>—</i>
-            <span>MARCA AUDIO 03</span><i>—</i>
-            <span>MARCA AUDIO 04</span><i>—</i>
-            <span>MARCA AUDIO 05</span><i>—</i>
-            <span>MARCA AUDIO 01</span><i>—</i>
-            <span>MARCA AUDIO 02</span><i>—</i>
-            <span>MARCA AUDIO 03</span><i>—</i>
-            <span>MARCA AUDIO 04</span><i>—</i>
-            <span>MARCA AUDIO 05</span><i>—</i>
-          </div>
-        </div>
-      </div>
-
-      <div class="brand-row" data-marquee>
-        <div class="brand-label">Vídeo</div>
-        <div class="marquee-viewport">
-          <div class="marquee-track marquee-track-reverse">
-            <span>MARCA VÍDEO 01</span><i>—</i>
-            <span>MARCA VÍDEO 02</span><i>—</i>
-            <span>MARCA VÍDEO 03</span><i>—</i>
-            <span>MARCA VÍDEO 04</span><i>—</i>
-            <span>MARCA VÍDEO 05</span><i>—</i>
-            <span>MARCA VÍDEO 01</span><i>—</i>
-            <span>MARCA VÍDEO 02</span><i>—</i>
-            <span>MARCA VÍDEO 03</span><i>—</i>
-            <span>MARCA VÍDEO 04</span><i>—</i>
-            <span>MARCA VÍDEO 05</span><i>—</i>
-          </div>
-        </div>
-      </div>
-      <p class="drag-hint">Arrastra las marcas ↔</p>
-    </section>
-
-    <section id="metodo" class="method section-pad">
-      <div class="section-heading reveal">
-        <span class="section-number">04</span>
-        <p class="eyebrow">Método</p>
-      </div>
-
-      <div class="method-line reveal" aria-label="Proceso de trabajo">
-        <div><span>01</span><strong>Diagnóstico</strong></div>
-        <span class="method-arrow">→</span>
-        <div><span>02</span><strong>Presupuesto</strong></div>
-        <span class="method-arrow">→</span>
-        <div><span>03</span><strong>Reparación</strong></div>
-      </div>
-
-      <div class="method-cta reveal">
-        <p>Atención exclusivamente con cita previa.</p>
-        <button class="button button-dark" data-open-modal>Solicitar cita</button>
-      </div>
-    </section>
-
-    <section id="contacto" class="contact">
-      <div class="contact-copy section-pad">
-        <div class="reveal">
-          <span class="section-number">05</span>
-          <p class="eyebrow">Contacto</p>
-        </div>
-
-        <h2 class="reveal">Hablemos de<br>tu equipo.</h2>
-
-        <div class="contact-people reveal">
-          <div class="person">
+        <div class="contact-list reveal">
+          <div class="contact-row">
             <span>Audio</span>
             <strong>Francisco Liberona</strong>
             <p>+34 XXX XXX XXX</p>
           </div>
-          <div class="person">
+          <div class="contact-row">
             <span>Vídeo · Iluminación</span>
             <strong>José Avellaneda</strong>
             <p>+34 XXX XXX XXX</p>
           </div>
-        </div>
-
-        <div class="contact-meta reveal">
-          <div>
+          <div class="contact-row">
             <span>Ubicación</span>
             <strong>Príncipe Pío · Madrid</strong>
+            <p>Dirección pendiente</p>
           </div>
-          <div>
+          <div class="contact-row">
             <span>Correo</span>
             <strong>info@auvilab.es</strong>
+            <p>Atención con cita previa</p>
+          </div>
+          <div class="contact-row">
+            <span>Redes sociales</span>
+            <strong>Instagram · TikTok</strong>
+            <p>Perfiles pendientes</p>
           </div>
         </div>
-      </div>
 
-      <div class="map-wrap reveal">
-        <iframe
-          title="Mapa de Príncipe Pío, Madrid"
-          src="https://www.google.com/maps?q=Pr%C3%ADncipe%20P%C3%ADo%2C%20Madrid&z=15&output=embed"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen>
-        </iframe>
-        <div class="map-caption">
-          <span>Príncipe Pío</span>
-          <span>Madrid</span>
+        <div class="map-card reveal">
+          <iframe
+            title="Mapa de Príncipe Pío, Madrid"
+            src="https://www.google.com/maps?q=Pr%C3%ADncipe%20P%C3%ADo%2C%20Madrid&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <a class="brand" href="#top">AUVILAB</a>
-    <p>Audio · Vídeo · Iluminación</p>
-    <p>© 2026 AUVILAB</p>
+  <footer>
+    <a class="brand" href="#inicio">AUVILAB</a>
+    <p>Audio · Vídeo · Iluminación · Madrid</p>
   </footer>
 
   <div class="modal" id="appointment-modal" aria-hidden="true">
     <div class="modal-backdrop" data-close-modal></div>
-    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <button class="modal-close" data-close-modal aria-label="Cerrar">×</button>
-      <p class="eyebrow">Cita previa</p>
-      <h2 id="modal-title">¿Qué necesitas reparar?</h2>
-      <p class="modal-lead">
-        Trabajamos exclusivamente con cita previa. Contacta directamente con el
-        técnico correspondiente.
-      </p>
+      <p class="section-label">Cita previa</p>
+      <h2 id="modal-title">Contacta con el técnico adecuado.</h2>
+      <p class="modal-intro">Trabajamos exclusivamente con cita previa.</p>
 
-      <div class="modal-contacts">
-        <div class="modal-contact">
-          <span>A / Audio</span>
-          <strong>Francisco Liberona</strong>
-          <p>+34 XXX XXX XXX</p>
-          <button class="modal-link" disabled>Teléfono pendiente</button>
-        </div>
-        <div class="modal-contact">
-          <span>V / Vídeo · Iluminación</span>
-          <strong>José Avellaneda</strong>
-          <p>+34 XXX XXX XXX</p>
-          <button class="modal-link" disabled>Teléfono pendiente</button>
-        </div>
+      <div class="modal-contact">
+        <span>Audio</span>
+        <strong>Francisco Liberona</strong>
+        <p>+34 XXX XXX XXX</p>
       </div>
 
-      <a class="modal-email" href="mailto:info@auvilab.es">
-        info@auvilab.es <span>↗</span>
-      </a>
-    </section>
+      <div class="modal-contact">
+        <span>Vídeo · Iluminación</span>
+        <strong>José Avellaneda</strong>
+        <p>+34 XXX XXX XXX</p>
+      </div>
+
+      <a href="mailto:info@auvilab.es" class="modal-email">info@auvilab.es</a>
+    </div>
   </div>
 
   <script src="./script.js"></script>

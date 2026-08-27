@@ -1,114 +1,82 @@
 
-const intro = document.querySelector('.intro');
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const intro = document.querySelector('.intro');
 
 if (!reduced) {
-  window.addEventListener('load', () => {
-    window.setTimeout(() => intro?.classList.add('is-hidden'), 1350);
-  });
+  window.addEventListener('load', () => setTimeout(() => intro?.classList.add('hide'), 1150));
 } else {
-  intro?.classList.add('is-hidden');
+  intro?.classList.add('hide');
 }
 
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      revealObserver.unobserve(entry.target);
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
+}, {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
-
-const modal = document.querySelector('#appointment-modal');
-const modalPanel = modal?.querySelector('.modal-panel');
+const modal = document.getElementById('appointment-modal');
 let lastFocus = null;
-
-function openModal() {
-  if (!modal) return;
+function openModal(){
   lastFocus = document.activeElement;
-  modal.classList.add('is-open');
-  modal.setAttribute('aria-hidden', 'false');
+  modal?.classList.add('open');
+  modal?.setAttribute('aria-hidden','false');
   document.body.classList.add('modal-open');
-  setTimeout(() => modal.querySelector('.modal-close')?.focus(), 80);
+  setTimeout(()=>modal?.querySelector('.modal-close')?.focus(),50);
 }
-
-function closeModal() {
-  if (!modal) return;
-  modal.classList.remove('is-open');
-  modal.setAttribute('aria-hidden', 'true');
+function closeModal(){
+  modal?.classList.remove('open');
+  modal?.setAttribute('aria-hidden','true');
   document.body.classList.remove('modal-open');
   lastFocus?.focus?.();
 }
+document.querySelectorAll('[data-open-modal]').forEach(b=>b.addEventListener('click',openModal));
+document.querySelectorAll('[data-close-modal]').forEach(b=>b.addEventListener('click',closeModal));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal?.classList.contains('open'))closeModal()});
 
-document.querySelectorAll('[data-open-modal]').forEach((btn) => btn.addEventListener('click', openModal));
-document.querySelectorAll('[data-close-modal]').forEach((btn) => btn.addEventListener('click', closeModal));
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && modal?.classList.contains('is-open')) closeModal();
-});
-
-document.querySelectorAll('[data-marquee]').forEach((row, rowIndex) => {
-  const viewport = row.querySelector('.marquee-viewport');
-  const track = row.querySelector('.marquee-track');
-  if (!viewport || !track) return;
-
-  let x = rowIndex === 0 ? 0 : -180;
-  let velocity = rowIndex === 0 ? -0.34 : 0.28;
+document.querySelectorAll('[data-marquee]').forEach((viewport,index)=>{
+  const track = viewport.querySelector('.brand-track');
+  let x = index ? -160 : 0;
+  let speed = index ? .22 : -.26;
   let dragging = false;
-  let previous = 0;
-  let dragVelocity = 0;
-  let lastTime = performance.now();
+  let prev = 0;
+  let dragSpeed = 0;
+  let last = performance.now();
 
-  const wrap = () => {
-    const half = track.scrollWidth / 2;
-    if (!half) return;
-    if (x < -half) x += half;
-    if (x > 0) x -= half;
+  const wrap = ()=>{
+    const half = track.scrollWidth/2;
+    if(!half) return;
+    if(x < -half) x += half;
+    if(x > 0) x -= half;
   };
 
-  const tick = (time) => {
-    const dt = Math.min(32, time - lastTime);
-    lastTime = time;
-
-    if (!dragging && !reduced) {
-      x += velocity * (dt / 16.67);
-      velocity += ((rowIndex === 0 ? -0.34 : 0.28) - velocity) * 0.012;
+  function frame(now){
+    const dt = Math.min(32, now-last); last=now;
+    if(!dragging && !reduced){
+      x += speed*(dt/16.67);
+      speed += ((index ? .22 : -.26)-speed)*.01;
       wrap();
-      track.style.transform = `translate3d(${x}px,0,0)`;
+      track.style.transform=`translate3d(${x}px,0,0)`;
     }
-    requestAnimationFrame(tick);
-  };
+    requestAnimationFrame(frame);
+  }
 
-  viewport.addEventListener('pointerdown', (e) => {
-    dragging = true;
-    previous = e.clientX;
-    dragVelocity = 0;
+  viewport.addEventListener('pointerdown',e=>{
+    dragging=true; prev=e.clientX; dragSpeed=0;
     viewport.setPointerCapture?.(e.pointerId);
   });
-
-  viewport.addEventListener('pointermove', (e) => {
-    if (!dragging) return;
-    const delta = e.clientX - previous;
-    previous = e.clientX;
-    x += delta;
-    dragVelocity = delta * 0.7;
-    wrap();
-    track.style.transform = `translate3d(${x}px,0,0)`;
+  viewport.addEventListener('pointermove',e=>{
+    if(!dragging)return;
+    const d=e.clientX-prev; prev=e.clientX;
+    x+=d; dragSpeed=d*.55; wrap();
+    track.style.transform=`translate3d(${x}px,0,0)`;
   });
-
-  const release = () => {
-    if (!dragging) return;
-    dragging = false;
-    velocity = dragVelocity;
-  };
-
-  viewport.addEventListener('pointerup', release);
-  viewport.addEventListener('pointercancel', release);
-  viewport.addEventListener('pointerleave', () => {
-    if (dragging) release();
-  });
-
-  requestAnimationFrame(tick);
+  const release=()=>{if(!dragging)return;dragging=false;speed=dragSpeed};
+  viewport.addEventListener('pointerup',release);
+  viewport.addEventListener('pointercancel',release);
+  viewport.addEventListener('pointerleave',()=>dragging&&release());
+  requestAnimationFrame(frame);
 });
