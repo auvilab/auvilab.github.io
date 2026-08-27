@@ -182,9 +182,9 @@
     .brand-track span{
       white-space:nowrap;
       font-family:var(--sans);
-      font-size: clamp(10px, 1vw, 14px);
+      font-size:clamp(10px,.9vw,12px);
       font-weight:400;
-      letter-spacing:.05em;
+      letter-spacing:.10em;
       text-transform:uppercase;
       color:#e8e2d9;
     }
@@ -431,12 +431,54 @@
 
     @media(max-width:760px){
       :root{--menu-h:58px}
-      .hero{padding-left:20px;padding-right:20px}
-      .hero-logo{font-size:clamp(70px,21vw,138px)}
-      .hero-subtitle{font-size:10px;letter-spacing:.22em}
-      .sticky-menu{gap:18px;padding:0 14px;overflow-x:auto;justify-content:flex-start}
-      .sticky-menu::-webkit-scrollbar{display:none}
-      .sticky-menu .menu-brand{font-size:15px}
+      .hero{
+        padding-left:20px;
+        padding-right:20px;
+        overflow:hidden;
+      }
+      .hero-inner{
+        width:100%;
+        max-width:100%;
+        overflow:visible;
+      }
+      .hero-logo{
+        font-size:clamp(56px,16.8vw,112px);
+        letter-spacing:.045em;
+        padding-left:.045em;
+        white-space:nowrap;
+        max-width:100%;
+      }
+      .hero-subtitle{
+        font-size:10px;
+        letter-spacing:.20em;
+        white-space:nowrap;
+      }
+      .hero-copy{
+        width:min(100%,330px);
+        margin-left:auto;
+        margin-right:auto;
+      }
+      .sticky-menu{
+        display:grid;
+        grid-template-columns:1.25fr .9fr .85fr 1.05fr 1.15fr;
+        gap:0;
+        padding:0 10px;
+        overflow:visible;
+        justify-content:stretch;
+      }
+      .sticky-menu a,
+      .sticky-menu button{
+        width:100%;
+        padding:8px 2px;
+        text-align:center;
+        font-size:8px;
+        letter-spacing:.13em;
+        white-space:nowrap;
+      }
+      .sticky-menu .menu-brand{
+        font-size:14px;
+        letter-spacing:.10em;
+      }
       .section{padding-left:20px;padding-right:20px}
       .atelier h2{font-size:clamp(34px,10vw,52px)}
       .technicians{grid-template-columns:1fr;gap:32px}
@@ -445,12 +487,29 @@
     }
 
     @media(max-width:480px){
-      .hero-copy{font-size:9px;letter-spacing:.13em;margin-top:45px}
-      .brand-track span{font-size:22px}
-      .brand-track{gap:22px}
+      .intro-logo{
+        font-size:clamp(52px,16.5vw,76px);
+        letter-spacing:.10em;
+        padding-left:.10em;
+        white-space:nowrap;
+      }
+      .intro-sub{
+        font-size:9px;
+        letter-spacing:.19em;
+        white-space:nowrap;
+      }
+      .hero-copy{
+        font-size:9px;
+        letter-spacing:.11em;
+        margin-top:45px;
+        line-height:1.9;
+      }
+      .brand-track span{font-size:10px}
+      .brand-track{gap:18px}
+      .brand-track i{font-size:9px}
       .process{gap:12px}
       .process span{font-size:10px}
-      .map-card{height:170px}
+      .map-card{height:160px}
     }
 
     @media(prefers-reduced-motion:reduce){
@@ -487,17 +546,15 @@
       <div class="section-inner">
         <p class="section-label">Marcas con las que trabajamos</p>
 
-        <div class="brand-stream" data-marquee>
+        <div class="brand-stream" data-marquee aria-label="Marcas de audio">
           <div class="brand-track">
-            <span>MARCA 01</span><i>·</i><span>MARCA 02</span><i>·</i><span>MARCA 03</span><i>·</i><span>MARCA 04</span><i>·</i><span>MARCA 05</span><i>·</i>
-            <span>MARCA 01</span><i>·</i><span>MARCA 02</span><i>·</i><span>MARCA 03</span><i>·</i><span>MARCA 04</span><i>·</i><span>MARCA 05</span><i>·</i>
+            <span>Marantz</span><i>·</i><span>Sansui</span><i>·</i><span>McIntosh</span><i>·</i><span>Accuphase</span><i>·</i><span>Luxman</span><i>·</i><span>Nakamichi</span><i>·</i><span>Pioneer</span><i>·</i><span>Technics</span><i>·</i><span>Revox</span><i>·</i><span>Studer</span><i>·</i><span>Nagra</span><i>·</i><span>Tascam</span><i>·</i><span>Denon</span><i>·</i><span>Yamaha</span><i>·</i><span>Marantz</span><i>·</i><span>Sansui</span><i>·</i><span>McIntosh</span><i>·</i><span>Accuphase</span><i>·</i><span>Luxman</span><i>·</i><span>Nakamichi</span><i>·</i><span>Pioneer</span><i>·</i><span>Technics</span><i>·</i><span>Revox</span><i>·</i><span>Studer</span><i>·</i><span>Nagra</span><i>·</i><span>Tascam</span><i>·</i><span>Denon</span><i>·</i><span>Yamaha</span><i>·</i>
           </div>
         </div>
 
-        <div class="brand-stream" data-marquee>
+        <div class="brand-stream" data-marquee aria-label="Marcas de vídeo e iluminación">
           <div class="brand-track">
-            <span>MARCA 06</span><i>·</i><span>MARCA 07</span><i>·</i><span>MARCA 08</span><i>·</i><span>MARCA 09</span><i>·</i><span>MARCA 10</span><i>·</i>
-            <span>MARCA 06</span><i>·</i><span>MARCA 07</span><i>·</i><span>MARCA 08</span><i>·</i><span>MARCA 09</span><i>·</i><span>MARCA 10</span><i>·</i>
+            <span>Blackmagic Design</span><i>·</i><span>Roland</span><i>·</i><span>Panasonic</span><i>·</i><span>Sony</span><i>·</i><span>Ross Video</span><i>·</i><span>ARRI</span><i>·</i><span>Litepanels</span><i>·</i><span>Kino Flo</span><i>·</i><span>Aputure</span><i>·</i><span>Astera</span><i>·</i><span>Canon</span><i>·</i><span>RED</span><i>·</i><span>AJA</span><i>·</i><span>Grass Valley</span><i>·</i><span>Blackmagic Design</span><i>·</i><span>Roland</span><i>·</i><span>Panasonic</span><i>·</i><span>Sony</span><i>·</i><span>Ross Video</span><i>·</i><span>ARRI</span><i>·</i><span>Litepanels</span><i>·</i><span>Kino Flo</span><i>·</i><span>Aputure</span><i>·</i><span>Astera</span><i>·</i><span>Canon</span><i>·</i><span>RED</span><i>·</i><span>AJA</span><i>·</i><span>Grass Valley</span><i>·</i>
           </div>
         </div>
       </div>
