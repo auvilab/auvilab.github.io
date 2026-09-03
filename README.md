@@ -1,22 +1,15 @@
-# AUVILAB landing v0.2
+# AUVILAB landing
 
-Revisión visual solicitada:
-- Hero completamente centrado.
-- AUVILAB como protagonista.
-- Audio · Vídeo · Iluminación debajo.
-- Mensaje breve: diagnóstico y reparación de averías complejas.
-- Eliminadas secciones editoriales de Audio/Vídeo/Iluminación.
-- Marcas reducidas a dos líneas animadas y centradas.
-- Taller / método concentrado en una sola sección.
-- Técnicos integrados en el bloque de taller.
-- Modal de cita centrado, no lateral.
-- Contacto vertical y más sobrio.
-- Mapa de Príncipe Pío reducido y a color.
+Configuración actual:
+- Hero centrado con AUVILAB como protagonista.
+- Audio · Vídeo · Fotografía · Lentes.
+- Dos líneas de marcas animadas.
+- Segunda línea: Sony · Canon · Nikon · JVC · Blackmagic · Panasonic · RED · Samsung.
+- Francisco Liberona (Audio): +34 685 43 35 83.
+- José Avellaneda (Vídeo · Fotografía · Lentes): +34 663 81 80 70.
+- Contacto sin correo ni redes sociales.
+- Modal de cita con teléfonos directos.
+- Mapa de Príncipe Pío, Madrid.
 
-Datos pendientes:
-- marcas reales
-- teléfonos
-- email definitivo
+Pendiente:
 - dirección exacta
-- Instagram/TikTok
-- tipografía definitiva para AUVILAB
